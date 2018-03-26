@@ -2,6 +2,8 @@ require "sensu/translator/cli"
 require "sensu/translator/deep_merge"
 require "sensu/translator/version"
 
+require "sensu/settings"
+
 module Sensu
   module Translator
     class Runner
@@ -10,7 +12,8 @@ module Sensu
       end
 
       def run
-        puts @options.inspect
+        @settings = Sensu::Settings.load(@options)
+        puts @settings.to_hash
       end
     end
   end
