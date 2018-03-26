@@ -1,7 +1,7 @@
 require "sensu/translator/version"
+require "sensu/translator/deep_merge"
 
 module Sensu
   module Translator
-    # Your code goes here...
   end
 end
