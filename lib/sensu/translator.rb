@@ -28,7 +28,8 @@ module Sensu
         v2_settings = []
         Sensu::Settings::CATEGORIES.each do |category|
           method_name = "translate_#{category.to_s.chop}"
-          v1_settings[category].each do |object|
+          v1_settings[category].each do |name, settings|
+            object = settings.merge(:name => name)
             v2_settings << send(method_name, object)
           end
         end
