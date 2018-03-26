@@ -1,5 +1,4 @@
 require "sensu/translator/cli"
-require "sensu/translator/deep_merge"
 require "sensu/translator/version"
 
 require "sensu/settings"
