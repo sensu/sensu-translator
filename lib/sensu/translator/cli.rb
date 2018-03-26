@@ -26,7 +26,7 @@ module Sensu
             exit
           end
           opts.on("-V", "--version", "Display version") do
-            puts VERSION
+            puts Sensu::Translator::VERSION
             exit
           end
           opts.on("-c", "--config FILE", "Sensu 1.x JSON config FILE. Default: /etc/sensu/config.json (if exists)") do |file|

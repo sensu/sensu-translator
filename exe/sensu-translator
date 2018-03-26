@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require "sensu/translator"
+
+translator = Sensu::Translator::Runner.new
+translator.run
