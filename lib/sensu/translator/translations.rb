@@ -4,7 +4,7 @@ module Sensu
       def v2_spec(type, object)
         {
           :type => type.to_s.capitalize,
-          :spec => object
+          :spec => object.merge(:organization => "default", :environment => "default")
         }
       end
 

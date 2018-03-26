@@ -5,6 +5,8 @@ require "sensu/translator/version"
 require "sensu/json"
 require "sensu/settings"
 
+require "fileutils"
+
 module Sensu
   module Translator
     class Runner
@@ -25,28 +27,39 @@ module Sensu
       end
 
       def translate(v1_settings)
-        v2_settings = []
+        v2_resources = []
         Sensu::Settings::CATEGORIES.each do |category|
           method_name = "translate_#{category.to_s.chop}"
           v1_settings[category].each do |name, settings|
-            object = settings.merge(:name => name)
-            v2_settings << send(method_name, object)
+            object = settings.merge(:name => name.to_s)
+            v2_resources << send(method_name, object)
           end
         end
-        v2_settings
+        v2_resources
       end
 
-      def create_output_file!(v2_settings)
-        content = Sensu::JSON.dump(v2_settings, :pretty => true)
-        File.open(@options[:output_file], "w") do |file|
-          file.write(content)
+      def create_output_files!(v2_resources)
+        output_dir = @options[:output_dir]
+        Sensu::Settings::CATEGORIES.each do |category|
+          category_dir = File.join(output_dir, category.to_s)
+          FileUtils.mkdir_p(category_dir)
+        end
+        v2_resources.each do |v2_resource|
+          category = v2_resource[:type].downcase + "s"
+          file_name = v2_resource[:spec][:name] + ".json"
+          output_file = File.join(output_dir, category, file_name)
+          content = Sensu::JSON.dump(v2_resource, :pretty => true)
+          File.open(output_file, "w") do |file|
+            file.write(content)
+          end
         end
       end
 
       def run
         v1_settings = load_v1_settings
-        v2_settings = translate(v1_settings)
-        create_output_file!(v2_settings)
+        v2_resources = translate(v1_settings)
+        create_output_files!(v2_resources)
+        puts "DONE!"
       end
     end
   end
