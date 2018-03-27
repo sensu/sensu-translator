@@ -1,3 +1,6 @@
+gem "sensu-json", "2.1.1"
+gem "sensu-settings", "10.13.1"
+
 require "sensu/translator/cli"
 require "sensu/translator/translations"
 require "sensu/translator/version"
@@ -45,8 +48,8 @@ module Sensu
           FileUtils.mkdir_p(category_dir)
         end
         v2_resources.each do |v2_resource|
-          category = v2_resource[:type].downcase + "s"
-          file_name = v2_resource[:spec][:name] + ".json"
+          category = "#{v2_resource[:type].downcase}s"
+          file_name = "#{v2_resource[:spec][:name]}.json"
           output_file = File.join(output_dir, category, file_name)
           content = Sensu::JSON.dump(v2_resource, :pretty => true)
           File.open(output_file, "w") do |file|

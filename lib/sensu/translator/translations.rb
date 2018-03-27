@@ -9,9 +9,16 @@ module Sensu
       end
 
       def translate_check(check, organization, environment)
-        check[:subscriptions] = check.delete(:subscribers)
+        check[:subscriptions] = check.delete(:subscribers) || []
+        if check[:standalone]
+          check.delete(:standalone)
+          check[:subscriptions] << "standalone"
+        end
         check[:publish] = check.fetch(:publish, true)
         check[:handlers] ||= [check.fetch(:handler, "default")]
+        if check[:source]
+          check[:proxy_entity_id] = check.delete(:source)
+        end
         v2_spec(:check, check, organization, environment)
       end
 
