@@ -21,6 +21,8 @@ Usage: sensu-translator [options]
 
 ## Example
 
+1. Translate Sensu 1.x configuration into the Sensu 2.x format
+
 ```
 $ sensu-translator -c /etc/sensu/config.json -d /etc/sensu/conf.d -o /tmp/sensu_v2
 
@@ -38,6 +40,12 @@ $ tree /tmp/sensu_v2
 └── mutators
     ├── obfuscate.json
     └── tag.json
+```
+
+2. Use a configured `sensuctl` and the newly created 2.x configuration files to manage Sensu 2.x resources
+
+```
+sensuctl create -f /tmp/sensu_v2/checks/website-healthz.json
 ```
 
 ## Development
