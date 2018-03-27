@@ -22,7 +22,7 @@ Usage: sensu-translator [options]
 ## Example
 
 ```
-$ sensu-translator -c spec/config.json -d spec/conf.d -o /tmp/sensu_v2
+$ sensu-translator -c /etc/sensu/config.json -d /etc/sensu/conf.d -o /tmp/sensu_v2
 
 $ tree /tmp/sensu_v2
 
