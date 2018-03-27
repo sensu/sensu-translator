@@ -9,6 +9,9 @@ module Sensu
       end
 
       def translate_check(check)
+        check[:subscriptions] = check.delete(:subscribers)
+        check[:publish] = check.fetch(:publish, true)
+        check[:handlers] ||= [check.fetch(:handler, "default")]
         v2_spec(:check, check)
       end
 
