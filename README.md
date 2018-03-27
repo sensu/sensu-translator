@@ -1,28 +1,44 @@
-# Sensu::Translator
+# Sensu Translator
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/sensu/translator`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+A CLI tool for translating Sensu 1.x configuration into the Sensu 2.x format.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'sensu-translator'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install sensu-translator
+`gem install sensu-translator`
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+Usage: sensu-translator [options]
+    -h, --help                       Display this message
+    -V, --version                    Display version
+    -c, --config FILE                Sensu 1.x JSON config FILE. Default: /etc/sensu/config.json (if exists)
+    -d, --config_dir DIR[,DIR]       DIR or comma-delimited DIR list for Sensu 1.x JSON config files. Default: /etc/sensu/conf.d (if exists)
+    -o, --output_dir DIR             Sensu 2.0 config output DIR. Default: /tmp/sensu_v2
+    -O, --organization ORG           Sensu 2.0 RBAC Organization. Default: default
+    -E, --environment ENV            Sensu 2.0 RBAC Environment. Default: default
+```
+
+## Example
+
+```
+$ sensu-translator -c spec/config.json -d spec/conf.d -o /tmp/sensu_v2
+
+$ tree /tmp/sensu_v2
+
+/tmp/sensu_v2
+├── checks
+│   ├── website-healthz.json
+│   └── haproxy-backends.json
+├── extensions
+├── filters
+├── handlers
+│   ├── email.json
+│   └── default.json
+└── mutators
+    ├── obfuscate.json
+    └── tag.json
+```
 
 ## Development
 
@@ -32,7 +48,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/sensu-translator.
+Bug reports and pull requests are welcome on GitHub at https://github.com/sensu/sensu-translator.
 
 ## License
 
