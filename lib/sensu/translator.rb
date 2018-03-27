@@ -41,7 +41,7 @@ module Sensu
         v2_resources.compact
       end
 
-      def create_output_files!(v2_resources)
+      def create_v2_output_files!(v2_resources)
         output_dir = @options[:output_dir]
         Sensu::Settings::CATEGORIES.each do |category|
           category_dir = File.join(output_dir, category.to_s)
@@ -61,7 +61,7 @@ module Sensu
       def run
         v1_settings = load_v1_settings
         v2_resources = translate(v1_settings)
-        create_output_files!(v2_resources)
+        create_v2_output_files!(v2_resources)
         puts "DONE!"
       end
     end
