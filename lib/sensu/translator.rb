@@ -32,7 +32,7 @@ module Sensu
           method_name = "translate_#{category.to_s.chop}"
           v1_settings[category].each do |name, settings|
             object = {:name => name.to_s}.merge(settings)
-            v2_resources << send(method_name, object)
+            v2_resources << send(method_name, object, @options[:organization], @options[:environment])
           end
         end
         v2_resources.compact

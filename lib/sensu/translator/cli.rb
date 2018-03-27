@@ -12,7 +12,9 @@ module Sensu
       # @return [Hash] options
       def self.read(arguments=ARGV)
         options = {
-          :output_dir => "/tmp/sensu_v2"
+          :output_dir => "/tmp/sensu_v2",
+          :organization => "default",
+          :environment => "default"
         }
         if File.exist?("/etc/sensu/config.json")
           options[:config_file] = "/etc/sensu/config.json"
@@ -37,6 +39,12 @@ module Sensu
           end
           opts.on("-o", "--output_dir DIR", "Sensu 2.0 config output DIR. Default: /tmp/sensu_v2") do |dir|
             options[:output_dir] = dir
+          end
+          opts.on("-O", "--organization ORG", "Sensu 2.0 RBAC Organization. Default: default") do |org|
+            options[:organization] = org
+          end
+          opts.on("-E", "--environment ENV", "Sensu 2.0 RBAC Environment. Default: default") do |env|
+            options[:environment] = env
           end
         end
         optparse.parse!(arguments)
