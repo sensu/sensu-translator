@@ -16,7 +16,9 @@ module Sensu
       end
 
       def translate_filter(filter)
-        v2_spec(:filter, filter)
+        puts "Sensu 1.x filter translation is not yet supported"
+        puts "Unable to translate Sensu 1.x filter: #{filter}"
+        nil
       end
 
       def translate_mutator(mutator)
@@ -28,7 +30,9 @@ module Sensu
       end
 
       def translate_extension(extension)
-        v2_spec(:extension, extension)
+        puts "Sensu 1.x extension translation is not yet supported"
+        puts "Unable to translate Sensu 1.x extension: #{extension}"
+        nil
       end
     end
   end

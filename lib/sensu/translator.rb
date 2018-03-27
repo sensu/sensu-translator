@@ -31,11 +31,11 @@ module Sensu
         Sensu::Settings::CATEGORIES.each do |category|
           method_name = "translate_#{category.to_s.chop}"
           v1_settings[category].each do |name, settings|
-            object = settings.merge(:name => name.to_s)
+            object = {:name => name.to_s}.merge(settings)
             v2_resources << send(method_name, object)
           end
         end
-        v2_resources
+        v2_resources.compact
       end
 
       def create_output_files!(v2_resources)
