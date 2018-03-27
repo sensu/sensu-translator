@@ -1,3 +1,8 @@
+[![Build Status](https://img.shields.io/travis/sensu/sensu-translator.svg)](https://travis-ci.org/sensu/sensu-translator)
+[![Gem Version](https://img.shields.io/gem/v/sensu-translator.svg)](https://github.com/sensu/sensu-translator/blob/master/CHANGELOG.md)
+[![MIT Licensed](https://img.shields.io/github/license/sensu/sensu-translator.svg)](https://raw.githubusercontent.com/sensu/sensu-translator/master/LICENSE)
+[![Join the chat at https://slack.sensu.io/](https://slack.sensu.io/badge.svg)](https://slack.sensu.io/)
+
 # Sensu Translator
 
 A CLI tool for translating Sensu 1.x configuration into the Sensu 2.x format.
