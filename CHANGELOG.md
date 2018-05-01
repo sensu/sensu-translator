@@ -6,8 +6,11 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 
 ## [Unreleased]
 
+## [0.2.0] - 2018-05-01
+
 ### Added
 - changelog guidelines location (@majormoses)
+- updated gemspec to support later sensu-json and sensu-settings releases
 
 ## [0.1.0] - 2018-03-26
 ### Added
