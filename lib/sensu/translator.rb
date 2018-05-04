@@ -1,6 +1,3 @@
-gem "sensu-json", "2.1.1"
-gem "sensu-settings", "10.13.1"
-
 require "sensu/translator/cli"
 require "sensu/translator/translations"
 require "sensu/translator/version"
