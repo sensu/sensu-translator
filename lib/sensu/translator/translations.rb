@@ -1,14 +1,14 @@
 module Sensu
   module Translator
     module Translations
-      def v2_spec(type, object, organization, environment)
+      def v2_spec(type, object, namespace)
         {
           :type => type.to_s.capitalize,
-          :spec => object.merge(:organization => organization, :environment => environment)
+          :spec => object.merge(:namespace => namespace)
         }
       end
 
-      def translate_check(check, organization, environment)
+      def translate_check(check, namespace)
         check[:subscriptions] = check.delete(:subscribers) || []
         if check[:standalone]
           check.delete(:standalone)
@@ -19,24 +19,24 @@ module Sensu
         if check[:source]
           check[:proxy_entity_id] = check.delete(:source)
         end
-        v2_spec(:check, check, organization, environment)
+        v2_spec(:check, check, namespace)
       end
 
-      def translate_filter(filter, organization, environment)
+      def translate_filter(filter, namespace)
         puts "Sensu 1.x filter translation is not yet supported"
         puts "Unable to translate Sensu 1.x filter: #{filter}"
         nil
       end
 
-      def translate_mutator(mutator, organization, environment)
-        v2_spec(:mutator, mutator, organization, environment)
+      def translate_mutator(mutator, namespace)
+        v2_spec(:mutator, mutator, namespace)
       end
 
-      def translate_handler(handler, organization, environment)
-        v2_spec(:handler, handler, organization, environment)
+      def translate_handler(handler, namespace)
+        v2_spec(:handler, handler, namespace)
       end
 
-      def translate_extension(extension, organization, environment)
+      def translate_extension(extension, namespace)
         puts "Sensu 1.x extension translation is not yet supported"
         puts "Unable to translate Sensu 1.x extension: #{extension}"
         nil
