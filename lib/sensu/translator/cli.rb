@@ -12,7 +12,7 @@ module Sensu
       # @return [Hash] options
       def self.read(arguments=ARGV)
         options = {
-          :output_dir => "/tmp/sensu_v2",
+          :output_dir => "/tmp/sensu_go",
           :namespace => "default"
         }
         if File.exist?("/etc/sensu/config.json")
@@ -36,7 +36,7 @@ module Sensu
           opts.on("-d", "--config_dir DIR[,DIR]", "DIR or comma-delimited DIR list for Sensu 1.x JSON config files. Default: /etc/sensu/conf.d (if exists)") do |dir|
             options[:config_dirs] = dir.split(",")
           end
-          opts.on("-o", "--output_dir DIR", "Sensu 2.0 config output DIR. Default: /tmp/sensu_v2") do |dir|
+          opts.on("-o", "--output_dir DIR", "Sensu 2.0 config output DIR. Default: /tmp/sensu_go") do |dir|
             options[:output_dir] = dir
           end
           opts.on("-n", "--namespace NAMESPACE", "Sensu 2.0 Namespace. Default: default") do |namespace|

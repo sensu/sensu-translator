@@ -13,8 +13,8 @@ describe "Sensu::Translator::Translations" do
     }
   end
 
-  it "can provide a v2 spec" do
-    result = v2_spec(:foo, {:bar => "baz"}, "qux")
+  it "can provide a go spec" do
+    result = go_spec(:foo, {:bar => "baz"}, "qux")
     expected = {
       :type => "Foo",
       :spec => {
