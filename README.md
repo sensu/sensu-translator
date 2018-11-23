@@ -20,8 +20,7 @@ Usage: sensu-translator [options]
     -c, --config FILE                Sensu 1.x JSON config FILE. Default: /etc/sensu/config.json (if exists)
     -d, --config_dir DIR[,DIR]       DIR or comma-delimited DIR list for Sensu 1.x JSON config files. Default: /etc/sensu/conf.d (if exists)
     -o, --output_dir DIR             Sensu 2.0 config output DIR. Default: /tmp/sensu_v2
-    -O, --organization ORG           Sensu 2.0 RBAC Organization. Default: default
-    -E, --environment ENV            Sensu 2.0 RBAC Environment. Default: default
+    -n, --namespace NAMESPACE        Sensu 2.0 Namespace. Default: default
 ```
 
 ## Example
