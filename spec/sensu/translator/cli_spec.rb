@@ -9,7 +9,7 @@ describe "Sensu::Translator::CLI" do
       :config_file => "/etc/sensu/config.json",
       :config_dirs => ["/etc/sensu/conf.d"],
       :namespace => "default",
-      :output_dir => "/tmp/sensu_v2"
+      :output_dir => "/tmp/sensu_go"
     }
     expect(options).to eq(expected)
   end
@@ -18,13 +18,13 @@ describe "Sensu::Translator::CLI" do
     options = Sensu::Translator::CLI.read([
       "-c", "spec/config.json",
       "-d", "spec/conf.d",
-      "-o", "spec/sensu_v2",
+      "-o", "spec/sensu_go",
       "-n", "spec"
     ])
     expected = {
       :config_file => "spec/config.json",
       :config_dirs => ["spec/conf.d"],
-      :output_dir => "spec/sensu_v2",
+      :output_dir => "spec/sensu_go",
       :namespace => "spec"
     }
     expect(options).to eq(expected)

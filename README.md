@@ -19,8 +19,8 @@ Usage: sensu-translator [options]
     -V, --version                    Display version
     -c, --config FILE                Sensu 1.x JSON config FILE. Default: /etc/sensu/config.json (if exists)
     -d, --config_dir DIR[,DIR]       DIR or comma-delimited DIR list for Sensu 1.x JSON config files. Default: /etc/sensu/conf.d (if exists)
-    -o, --output_dir DIR             Sensu 2.0 config output DIR. Default: /tmp/sensu_v2
-    -n, --namespace NAMESPACE        Sensu 2.0 Namespace. Default: default
+    -o, --output_dir DIR             Sensu Go config output DIR. Default: /tmp/sensu_go
+    -n, --namespace NAMESPACE        Sensu Go Namespace. Default: default
 ```
 
 ## Example
@@ -28,11 +28,11 @@ Usage: sensu-translator [options]
 1. Translate Sensu 1.x configuration into the Sensu 2.x format
 
 ```
-$ sensu-translator -c /etc/sensu/config.json -d /etc/sensu/conf.d -o /tmp/sensu_v2
+$ sensu-translator -c /etc/sensu/config.json -d /etc/sensu/conf.d -o /tmp/sensu_go
 
-$ tree /tmp/sensu_v2
+$ tree /tmp/sensu_go
 
-/tmp/sensu_v2
+/tmp/sensu_go
 ├── checks
 │   ├── website-healthz.json
 │   └── haproxy-backends.json
@@ -49,7 +49,7 @@ $ tree /tmp/sensu_v2
 2. Use a configured `sensuctl` and the newly created 2.x configuration files to manage Sensu 2.x resources
 
 ```
-sensuctl create -f /tmp/sensu_v2/checks/website-healthz.json
+sensuctl create -f /tmp/sensu_go/checks/website-healthz.json
 ```
 
 ## Development
