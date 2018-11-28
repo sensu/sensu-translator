@@ -1,12 +1,12 @@
 module Sensu
   module Translator
     module Translations
-      def go_spec(type, object, namespace, name)
+      def go_spec(type, object, namespace, name, labels={}, annotations={})
         metadata = {
           :namespace => namespace,
           :name => name,
-          :labels => {},
-          :annotations => {}
+          :labels => labels,
+          :annotations => annotations
         }
         {
           :type => type.to_s.capitalize,
