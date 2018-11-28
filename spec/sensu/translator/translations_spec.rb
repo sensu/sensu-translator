@@ -35,9 +35,9 @@ describe "Sensu::Translator::Translations" do
       :type => "Check",
       :spec => {
         :command => "true",
-        :interval => 60,
         :subscriptions => ["spec"],
         :publish => true,
+        :interval => 60,
         :handlers => ["default"],
         :metadata => {
           :namespace => "spec",
@@ -62,5 +62,13 @@ describe "Sensu::Translator::Translations" do
     result = translate_check(@check, @namespace, "spec")
     expect(result[:spec][:proxy_entity_id]).to eq("spec")
     expect(result[:spec][:source]).to be_nil
+  end
+
+  it "can translate a check with custom attributes" do
+    @check[:subscribers] = ["spec"]
+    @check[:foo] = "bar"
+    result = translate_check(@check, @namespace, "spec")
+    puts result.inspect
+    expect(result[:spec][:metadata][:labels][:json_attributes]).to eq('{"foo":"bar"}')
   end
 end
