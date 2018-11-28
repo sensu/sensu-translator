@@ -60,7 +60,7 @@ describe "Sensu::Translator::Translations" do
   it "can translate a check with a source" do
     @check[:source] = "spec"
     result = translate_check(@check, @namespace, "spec")
-    expect(result[:spec][:proxy_entity_id]).to eq("spec")
+    expect(result[:spec][:proxy_entity_name]).to eq("spec")
     expect(result[:spec][:source]).to be_nil
   end
 

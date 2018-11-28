@@ -32,7 +32,7 @@ module Sensu
         check[:handlers] = object.delete(:handlers) || ["default"]
         check[:handlers] << object.delete(:handler) if object[:handler]
         check[:handlers].uniq!
-        check[:proxy_entity_id] = object.delete(:source) if object[:source]
+        check[:proxy_entity_name] = object.delete(:source) if object[:source]
         check[:stdin] = object.delete(:stdin) if object[:stdin]
         check[:ttl] = object.delete(:ttl) if object[:ttl]
         check[:ttl_status] = object.delete(:ttl_status) if object[:ttl_status]
