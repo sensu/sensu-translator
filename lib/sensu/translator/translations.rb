@@ -9,6 +9,7 @@ module Sensu
           :annotations => annotations
         }
         {
+          :api_version => "core/v2",
           :type => type.to_s.capitalize,
           :metadata => metadata,
           :spec => spec

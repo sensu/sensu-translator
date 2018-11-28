@@ -14,6 +14,7 @@ describe "Sensu::Translator::Translations" do
   it "can provide a go spec" do
     result = go_spec(:foo, {:bar => "baz"}, "qux", "quux")
     expected = {
+      :api_version => "core/v2",
       :type => "Foo",
       :metadata => {
         :namespace => "qux",
@@ -32,6 +33,7 @@ describe "Sensu::Translator::Translations" do
     @check[:subscribers] = ["spec"]
     result = translate_check(@check, @namespace, "spec")
     expected = {
+      :api_version => "core/v2",
       :type => "Check",
       :metadata => {
         :namespace => "spec",
