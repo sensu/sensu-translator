@@ -15,14 +15,14 @@ describe "Sensu::Translator::Translations" do
     result = go_spec(:foo, {:bar => "baz"}, "qux", "quux")
     expected = {
       :type => "Foo",
+      :metadata => {
+        :namespace => "qux",
+        :name => "quux",
+        :labels => {},
+        :annotations => {}
+      },
       :spec => {
-        :bar => "baz",
-        :metadata => {
-          :namespace => "qux",
-          :name => "quux",
-          :labels => {},
-          :annotations => {}
-        }
+        :bar => "baz"
       }
     }
     expect(result).to eq(expected)
@@ -33,18 +33,18 @@ describe "Sensu::Translator::Translations" do
     result = translate_check(@check, @namespace, "spec")
     expected = {
       :type => "Check",
+      :metadata => {
+        :namespace => "spec",
+        :name => "spec",
+        :labels => {},
+        :annotations => {}
+      },
       :spec => {
         :command => "true",
         :subscriptions => ["spec"],
         :publish => true,
         :interval => 60,
-        :handlers => ["default"],
-        :metadata => {
-          :namespace => "spec",
-          :name => "spec",
-          :labels => {},
-          :annotations => {}
-        }
+        :handlers => ["default"]
       }
     }
     expect(result).to eq(expected)
@@ -68,7 +68,6 @@ describe "Sensu::Translator::Translations" do
     @check[:subscribers] = ["spec"]
     @check[:foo] = "bar"
     result = translate_check(@check, @namespace, "spec")
-    puts result.inspect
-    expect(result[:spec][:metadata][:labels][:json_attributes]).to eq('{"foo":"bar"}')
+    expect(result[:metadata][:labels][:json_attributes]).to eq('{"foo":"bar"}')
   end
 end

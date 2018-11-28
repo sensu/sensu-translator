@@ -1,7 +1,7 @@
 module Sensu
   module Translator
     module Translations
-      def go_spec(type, object, namespace, name, labels={}, annotations={})
+      def go_spec(type, spec, namespace, name, labels={}, annotations={})
         metadata = {
           :namespace => namespace,
           :name => name,
@@ -10,7 +10,8 @@ module Sensu
         }
         {
           :type => type.to_s.capitalize,
-          :spec => object.merge(:metadata => metadata)
+          :metadata => metadata,
+          :spec => spec
         }
       end
 
