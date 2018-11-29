@@ -30,9 +30,8 @@ module Sensu
         go_resources = []
         Sensu::Settings::CATEGORIES.each do |category|
           method_name = "translate_#{category.to_s.chop}"
-          v1_settings[category].each do |name, settings|
-            object = {:name => name.to_s}.merge(settings)
-            go_resources << send(method_name, object, @options[:namespace])
+          v1_settings[category].each do |name, object|
+            go_resources << send(method_name, object, @options[:namespace], name)
           end
         end
         go_resources.compact

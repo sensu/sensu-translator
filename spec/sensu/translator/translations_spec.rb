@@ -6,20 +6,24 @@ describe "Sensu::Translator::Translations" do
   before do
     @namespace = "spec"
     @check = {
-      :name => "spec",
       :command => "true",
-      :interval => 60,
-      :namespace => @namespace
+      :interval => 60
     }
   end
 
   it "can provide a go spec" do
-    result = go_spec(:foo, {:bar => "baz"}, "qux")
+    result = go_spec(:foo, {:bar => "baz"}, "qux", "quux")
     expected = {
+      :api_version => "core/v2",
       :type => "Foo",
+      :metadata => {
+        :namespace => "qux",
+        :name => "quux",
+        :labels => {},
+        :annotations => {}
+      },
       :spec => {
-        :bar => "baz",
-        :namespace => "qux"
+        :bar => "baz"
       }
     }
     expect(result).to eq(expected)
@@ -27,17 +31,22 @@ describe "Sensu::Translator::Translations" do
 
   it "can translate a check with subscribers" do
     @check[:subscribers] = ["spec"]
-    result = translate_check(@check, @namespace)
+    result = translate_check(@check, @namespace, "spec")
     expected = {
+      :api_version => "core/v2",
       :type => "Check",
-      :spec => {
+      :metadata => {
+        :namespace => "spec",
         :name => "spec",
+        :labels => {},
+        :annotations => {}
+      },
+      :spec => {
         :command => "true",
-        :interval => 60,
         :subscriptions => ["spec"],
         :publish => true,
-        :handlers => ["default"],
-        :namespace => "spec"
+        :interval => 60,
+        :handlers => ["default"]
       }
     }
     expect(result).to eq(expected)
@@ -45,15 +54,22 @@ describe "Sensu::Translator::Translations" do
 
   it "can translate a standalone check" do
     @check[:standalone] = true
-    result = translate_check(@check, @namespace)
+    result = translate_check(@check, @namespace, "spec")
     expect(result[:spec][:subscriptions]).to eq(["standalone"])
     expect(result[:spec][:standalone]).to be_nil
   end
 
   it "can translate a check with a source" do
     @check[:source] = "spec"
-    result = translate_check(@check, @namespace)
-    expect(result[:spec][:proxy_entity_id]).to eq("spec")
+    result = translate_check(@check, @namespace, "spec")
+    expect(result[:spec][:proxy_entity_name]).to eq("spec")
     expect(result[:spec][:source]).to be_nil
+  end
+
+  it "can translate a check with custom attributes" do
+    @check[:subscribers] = ["spec"]
+    @check[:foo] = "bar"
+    result = translate_check(@check, @namespace, "spec")
+    expect(result[:metadata][:labels][:json_attributes]).to eq('{"foo":"bar"}')
   end
 end
