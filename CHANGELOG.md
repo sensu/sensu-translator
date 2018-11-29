@@ -6,6 +6,16 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 
 ## [Unreleased]
 
+## [0.4.0] - 2018-11-29
+
+### Changed
+- Renamed Sensu 2.x -> Sensu Go
+- Replaced Organization/Environment with Namespace
+- Sensu Go configuration object files now include mandatory metadata
+
+### Added
+- Custom attributes added to Go label "json_attributes"
+
 ## [0.3.0] - 2018-05-04
 
 ### Fixed
