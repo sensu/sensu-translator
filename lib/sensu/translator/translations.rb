@@ -42,7 +42,7 @@ module Sensu
         # TODO: subdue, hooks
         annotations = {}
         unless object.empty?
-          annotations[:json_attributes] = Sensu::JSON.dump(object)
+          annotations["sensu.io.json_attributes".to_sym] = Sensu::JSON.dump(object)
         end
         go_spec(:check, check, namespace, name, {}, annotations)
       end
