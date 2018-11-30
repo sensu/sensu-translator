@@ -70,6 +70,6 @@ describe "Sensu::Translator::Translations" do
     @check[:subscribers] = ["spec"]
     @check[:foo] = "bar"
     result = translate_check(@check, @namespace, "spec")
-    expect(result[:metadata][:labels][:json_attributes]).to eq('{"foo":"bar"}')
+    expect(result[:metadata][:annotations][:json_attributes]).to eq('{"foo":"bar"}')
   end
 end
