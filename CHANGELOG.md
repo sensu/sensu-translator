@@ -6,6 +6,15 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 
 ## [Unreleased]
 
+## [1.0.0] - 2018-12-04
+
+### Changed
+- Now using an annotation for json_attributes instead of a label
+- Namespaced the json_attributes annotation, sensu.io.*
+
+### Added
+- Custom attributes added to Go label "json_attributes"
+
 ## [0.4.0] - 2018-11-29
 
 ### Changed
