@@ -40,11 +40,11 @@ module Sensu
         check[:low_flap_threshold] = object.delete(:low_flap_threshold) if object[:low_flap_threshold]
         check[:high_flap_threshold] = object.delete(:high_flap_threshold) if object[:high_flap_threshold]
         # TODO: subdue, hooks
-        labels = {}
+        annotations = {}
         unless object.empty?
-          labels[:json_attributes] = Sensu::JSON.dump(object)
+          annotations["sensu.io.json_attributes".to_sym] = Sensu::JSON.dump(object)
         end
-        go_spec(:check, check, namespace, name, labels)
+        go_spec(:check, check, namespace, name, {}, annotations)
       end
 
       def translate_filter(object, namespace, name)
