@@ -45,7 +45,7 @@ module Sensu
         end
         go_resources.each do |go_resource|
           category = "#{go_resource[:type].downcase}s"
-          file_name = "#{go_resource[:spec][:name]}.json"
+          file_name = "#{go_resource[:metadata][:name]}.json"
           output_file = File.join(output_dir, category, file_name)
           content = Sensu::JSON.dump(go_resource, :pretty => true)
           File.open(output_file, "w") do |file|
