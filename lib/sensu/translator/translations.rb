@@ -49,7 +49,7 @@ module Sensu
 
       def translate_filter(object, namespace, name)
         puts "Sensu 1.x filter translation is not yet supported"
-        puts "Unable to translate Sensu 1.x filter: #{name} - #{filter}"
+        puts "Unable to translate Sensu 1.x filter: #{name} #{object}"
         nil
       end
 
@@ -63,7 +63,7 @@ module Sensu
 
       def translate_extension(object, namespace, name)
         puts "Sensu 1.x extension translation is not yet supported"
-        puts "Unable to translate Sensu 1.x extension: #{name} - #{extension}"
+        puts "Unable to translate Sensu 1.x extension: #{name} - #{object}"
         nil
       end
     end
