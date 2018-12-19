@@ -6,6 +6,13 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 
 ## [Unreleased]
 
+## [1.0.1] - 2018-12-18
+
+### Fixed
+- Now getting Sensu Go config file name from object metadata
+- Check timeout no longer treated as custom
+- Unable to translate log lines now include object inspection
+
 ## [1.0.0] - 2018-12-04
 
 ### Changed
