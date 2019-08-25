@@ -45,6 +45,8 @@ module Sensu
         unless object.empty?
           annotations["sensu.io.json_attributes".to_sym] = Sensu::JSON.dump(object)
         end
+        annotations["fatigue_check/occurrences"] = object[:occurrences].to_s if object[:occurrences]
+        annotations["fatigue_check/interval"] = object[:refresh].to_s if object[:refresh]
         go_spec(:check, check, namespace, name, {}, annotations)
       end
 
