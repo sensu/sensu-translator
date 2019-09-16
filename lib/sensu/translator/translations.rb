@@ -37,7 +37,6 @@ module Sensu
         check[:stdin] = object.delete(:stdin) if object[:stdin]
         check[:timeout] = object.delete(:timeout) if object[:timeout]
         check[:ttl] = object.delete(:ttl) if object[:ttl]
-        check[:ttl_status] = object.delete(:ttl_status) if object[:ttl_status]
         check[:low_flap_threshold] = object.delete(:low_flap_threshold) if object[:low_flap_threshold]
         check[:high_flap_threshold] = object.delete(:high_flap_threshold) if object[:high_flap_threshold]
         # TODO: subdue, hooks
