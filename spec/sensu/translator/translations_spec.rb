@@ -72,4 +72,16 @@ describe "Sensu::Translator::Translations" do
     result = translate_check(@check, @namespace, "spec")
     expect(result[:metadata][:annotations]["sensu.io.json_attributes".to_sym]).to eq('{"foo":"bar"}')
   end
+
+  it "can add fatigue_check/occurrance annotation when occurrences is present" do
+    @check[:occurrences] = 10
+    result = translate_check(@check, @namespace, "spec")
+    expect(result[:metadata][:annotations]["fatigue_check/occurrences"]).to eq("10")
+  end
+
+  it "can add fatigue_check/interval annotation when refresh is present" do
+    @check[:refresh] = 3600
+    result = translate_check(@check, @namespace, "spec")
+    expect(result[:metadata][:annotations]["fatigue_check/interval"]).to eq("3600")
+  end
 end
