@@ -6,6 +6,10 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 
 ## [Unreleased]
 
+## [1.1.0] - 2020-02-19
+### Added
+- Translate check occurrences and refresh to fatigue_check annotations
+
 ## [1.0.1] - 2018-12-18
 
 ### Fixed
