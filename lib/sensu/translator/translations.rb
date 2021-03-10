@@ -46,6 +46,7 @@ module Sensu
         end
         annotations["fatigue_check/occurrences"] = object[:occurrences].to_s if object[:occurrences]
         annotations["fatigue_check/interval"] = object[:refresh].to_s if object[:refresh]
+	annotations["sensu.io/plugins/sensu-pagerduty-handler/config/team"] = object[:pager_team].to_s if object[:pager_team]
         go_spec(:check, check, namespace, name, {}, annotations)
       end
 
