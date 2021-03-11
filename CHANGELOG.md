@@ -6,6 +6,10 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 
 ## [Unreleased]
 
+## [1.2.0] - 2021-03-10
+### Added
+- Translate check pager_team to the pagerduty plugin config team annotation
+
 ## [1.1.0] - 2020-02-19
 ### Added
 - Translate check occurrences and refresh to fatigue_check annotations
