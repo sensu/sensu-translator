@@ -1,3 +1,8 @@
+> [!WARNING]
+> **This repository is scheduled to be archived on 13th November 2026.**
+>
+> After that date it will be read-only: no new commits, issues, or pull requests, and no further maintenance or security updates will be issued.
+
 [![Build Status](https://travis-ci.org/sensu/sensu-translator.svg?branch=master)](https://travis-ci.org/sensu/sensu-translator)
 [![Gem Version](https://img.shields.io/gem/v/sensu-translator.svg)](https://github.com/sensu/sensu-translator/blob/master/CHANGELOG.md)
 [![MIT Licensed](https://img.shields.io/github/license/sensu/sensu-translator.svg)](https://raw.githubusercontent.com/sensu/sensu-translator/master/LICENSE)
